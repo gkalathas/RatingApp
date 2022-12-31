@@ -2,12 +2,9 @@ package com.example.frontToBack.controller;
 
 import com.example.frontToBack.model.Rating;
 import com.example.frontToBack.service.RatingService;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
-@Controller
+//@Controller
 public class RatingController {
 
     private RatingService ratingService;
@@ -16,7 +13,7 @@ public class RatingController {
         this.ratingService = ratingService;
     }
 
-    @GetMapping("/home")
+    //@GetMapping("/home")
     public String showTheRatingForm(Model model, Rating rating) {
 
         model.addAttribute("rating", new Rating());
@@ -24,7 +21,7 @@ public class RatingController {
         return "home";
     }
 
-    @PostMapping("/save")
+    //@PostMapping("/save")
     public String save(Rating rating, Model model) {
         if(ratingService.saveRating(rating)<1){
           model.addAttribute("errormessage", String.format("Invalid rating %s", rating.getStars()));

@@ -2,9 +2,8 @@ package com.example.frontToBack.service;
 
 import com.example.frontToBack.mapper.RatingMapper;
 import com.example.frontToBack.model.Rating;
-import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 public class RatingService {
 
     private RatingMapper ratingMapper;
