@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.OneToOne;
-import javax.validation.constraints.NotBlank;
 
 @Data
 @AllArgsConstructor
@@ -17,6 +16,5 @@ public class Rating {
     private float stars = 0.0F;
 
     @OneToOne
-    @NotBlank
     private Feedback feedback;
 }

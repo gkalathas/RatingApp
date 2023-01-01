@@ -12,19 +12,15 @@ public class Feedback {
     private Long feedbackId;
 
     @Column(name = "item_id")
-    @NotBlank
     private Long itemId;
 
     @Column(name = "interested_id")
-    @NotBlank
     private Long userId;
 
     @Column(name = "rating")
-    @NotBlank
     private float rating;
 
     @Column(name = "hash_key")
-    @NotBlank
     private String hashKey;
 
     public Feedback() {
