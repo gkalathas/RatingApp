@@ -4,7 +4,7 @@ package com.example.frontToBack.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+//to be deleted
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

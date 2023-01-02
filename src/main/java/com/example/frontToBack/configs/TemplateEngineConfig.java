@@ -17,7 +17,6 @@ public class TemplateEngineConfig implements WebMvcConfigurer {
     private static final String EMAIL_TEMPLATE_ENCODING = "UTF-8";
 
     @Bean
-    @Primary
     public TemplateEngine emailTemplateEngine() {
         final SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         // Resolver for HTML emails (except the editable one)
@@ -34,6 +33,7 @@ public class TemplateEngineConfig implements WebMvcConfigurer {
         templateResolver.setTemplateMode(TemplateMode.HTML);
         templateResolver.setCharacterEncoding(EMAIL_TEMPLATE_ENCODING);
         templateResolver.setCacheable(false);
+
 
         return templateResolver;
     }

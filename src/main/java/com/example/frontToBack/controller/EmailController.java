@@ -2,7 +2,6 @@ package com.example.frontToBack.controller;
 
 
 import com.example.frontToBack.model.Feedback;
-import com.example.frontToBack.model.Item;
 import com.example.frontToBack.model.Rating;
 import com.example.frontToBack.model.User;
 import com.example.frontToBack.service.FeedbackService;
@@ -10,16 +9,14 @@ import com.example.frontToBack.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 import java.io.UnsupportedEncodingException;
 
-@RestController
+@Controller
 public class EmailController {
 
 private final FeedbackService feedbackService;
@@ -34,12 +31,12 @@ private final MailService mailService;
         this.mailService = mailService;
     }
 
-    @GetMapping("/show")
-    public String getRatingForm(Model model, Rating rating) {
 
+    @RequestMapping("/{url}")
+    public String showRatingForm(Model model, @PathVariable String url) {
         model.addAttribute("rating", new Rating());
-
-        return "home";
+        model.addAttribute("hash", url);
+        return "ratingForm";
     }
 
     @PostMapping("/send")
@@ -61,13 +58,15 @@ private final MailService mailService;
     @PostMapping("/saveratingaftersave")
     public String save(Rating rating, Model model) {
         float result = rating.getStars();
-        if(result <= 0){
-            model.addAttribute("errormessage", String.format("Invalid rating %s", rating.getStars()));
-        }
-        model.addAttribute("successmessage", String.format("Rating %s successfully stored", rating.getStars()));
+        String hash = (String) model.getAttribute("hash");
+        System.out.println(hash + "hash submitted");
+//        if(result <= 0){
+//            model.addAttribute("errormessage", String.format("Invalid rating %s", rating.getStars()));
+//        }
+//        model.addAttribute("successmessage", String.format("Rating %s successfully stored", rating.getStars()));
 
         System.out.println(result);
-        feedbackService.updateFeedback(rating.getStars(), rating.getFeedback().getHashKey());
+//        feedbackService.updateFeedback(rating.getStars(), rating.getFeedback().getHashKey());
 
         model.addAttribute("rating", rating);
         return "saved";

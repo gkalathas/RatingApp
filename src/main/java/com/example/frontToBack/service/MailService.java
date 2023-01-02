@@ -74,7 +74,7 @@ public class MailService {
         context.setVariable("lastname", user.getLastName());
         context.setVariable("name", user.getUsername());
         context.setVariable("logo", "images/logo.png");
-        context.setVariable("url", "http://localhost:8080"+ user.hashCode());
+        context.setVariable("url", "http://localhost:8080/"+ user.hashCode());
 
         final String htmlContent = this.templateEngine.process("mailTemplate", context);
 
@@ -82,13 +82,3 @@ public class MailService {
     }
 
 }
-//    THE JSON FOR POSTMAN TESTING
-//{
-//
-//        "firstName": "George",
-//        "lastName" : "kalathas",
-//        "username" : "geokal",
-//        "email" : "geo.kal91@hotmail.com",
-//        "itemId" : 1233123131
-//
-//        }
